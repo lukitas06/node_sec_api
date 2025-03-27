@@ -54,6 +54,7 @@ const router = Router();
 router.get('/', async (req: Request, res: Response) => {
     try {
         const users = await User.find();
+
         res.json(users);
     } catch (error) {
         res.json({ message: error });

@@ -7,6 +7,8 @@ import cardRoutes from './routes/cardRoutes';
 import auth from './routes/auth';
 import swaggerUI from 'swagger-ui-express';
 import swaggerSpec from './swagger';
+import {rateLimiterExpress}  from './middleware/rateLimiter';
+import {customRedisRateLimiter} from './middleware/rateLimiter';
 
 dotenv.config();
 const uri = process.env.MONGO_URI || '';
@@ -16,6 +18,9 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware 
 app.use(express.json());
+// app.use(rateLimiterExpress);
+app.use(customRedisRateLimiter);
+
 // Serve Swagger documentation
 
 //Routes
